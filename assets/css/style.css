@@ -1,0 +1,4 @@
+/*experimenting with some extra styling. bootstrap needed to be overriddent by !important for my custom css to work*/
+.bg-gradient {
+    background: linear-gradient(180deg, rgb(0 65 255/68%), rgb(0 255 210/59%))!important;
+}
