@@ -17,16 +17,26 @@
      <h1 class="d-flex justify-content-center">What's The Weather Outside?</h1>
     </header>
     <!--section-->
-    <section class="container-fluid d-flex flex-column vh-100 bg-light">
+    <section class="container-fluid d-flex flex-column vh-50 bg-light">
         <div class="row d-flex">
             <!--city search location-->
-            <div class="col-12 col-md-4 col-lg-3 vh-100">
-                <h1>Search for a City</h1>
-                blah blah
+            <div class="col-12 col-md-4 col-lg-3">
+               <div><h1>Search for a City:</h1></div> 
+               <!--city input-->
+               <div class="border-bottom">
+                    <form>
+                         <input type="text" id="cityinputlocation" class="form-control">
+                    </form>
+                    <button type="button" class="btn btn-primary w-100 my-3" >Search</button>
+                </div>    
+               <!--saved city propagation-->
+                <div class="saved-city">
+                    <button type="button" class="btn btn-primary w-100 my-3" >Saved City</button>
+                </div>
             </div>
             <!--single day content-->
             <div class="col-12 col-md-8 col-lg-9 ">
-                <!--I'm thinking this will be appended for each city-->
+                <!--I'm thinking this will be appended for each city/5 day forecast-->
                   <div class="border border-dark p-3 my-3">
                      <h1>City<span>(1/13/2024)
                                 <i class="bi bi-brightness-high-fill"></i>
