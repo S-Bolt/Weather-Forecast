@@ -1,5 +1,5 @@
 let searchInput = $("#citySearchForm");
-let searchButton = $("#search")
+let searchButton = $("#search");
 //handle search city submission event 
 function handleSearchCity(event){
     event.preventDefault();
@@ -15,28 +15,31 @@ function handleSearchCity(event){
             city: cityName,
         }
 
-console.log (searchedCity);
+    console.log (searchedCity);
 
-let savedCities =JSON.parse(localStorage.getItem("cityNameKey"));
-//defines savedCities as empty array, else will throw error
-if (!Array.isArray(savedCities)) {
-    savedCities = [];
-};
-savedCities.push(searchedCity);
-localStorage.setItem("savedCitiesKey",JSON.stringify(savedCities));
-
-    console.log("saved cities:", savedCities);
-        //clearing search input
-        $("#cityInputLocation").val('');
+    let savedCities = JSON.parse(localStorage.getItem("savedCitiesKey")) || [];
+    //checking if city exist already/if not add local storage
+    let cityExist =false;
+    for (let i =0; i < savedCities.length; i++) {
+        if (savedCities[i].city === cityName){
+            cityExist = true;
+            console.log("city already exist");
+            return;
+        }
+    } if (!cityExist) {
+        savedCities.push(searchedCity);
+        localStorage.setItem("savedCitiesKey", JSON.stringify(savedCities));
+        console.log("City added to saved", searchedCity);
+    } else{
+        console.log("City already exist in saved ")
     }
-    return;
+ };
 };
 
-$(document).ready(function () {
-
-    $("#search").click(function(event) {
+$(document).ready(function() {
+//click search
+    searchButton.click(function(event) {
         console.log("Button clicked");
         handleSearchCity(event);
-
     });
 });
