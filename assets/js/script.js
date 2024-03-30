@@ -40,7 +40,28 @@ function handleSearchCity(event){
 
 //Todo Function to converty city name to geo data
 
+function getGeoData() {
+    
+    fetch(geoApiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data)
+      });
+    };
+
 //Todo function to fetch weather data with lat/long
+function getWeatherData() {
+    
+    fetch(weatherApiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data)
+      });
+    };
 
 //Todo function to render
 
