@@ -1,21 +1,32 @@
-fetch('https://api.openweathermap.org/data/2.5/forecast?lat=38&lon=-77&units=imperial&appid=1b770f237929bb21c34412c090d06664', {
-    method: 'GET', //GET is the default.
-    credentials: 'same-origin', // include, *same-origin, omit
-    redirect: 'follow', // manual, *follow, error ,
-})
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
-  });
+let searchInput = $("#citySearchForm");
+let searchButton = $("#search")
+//handle submission event 
+searchInput.submit(function(event){
+    event.preventDefault();
 
-  'http://api.openweathermap.org/geo/1.0/direct?q=Baltimore&limit=1&appid=1b770f237929bb21c34412c090d06664'
-  // AJAX call requires a third party library, jQuery lesson 5
-$.ajax({
-    url: requestUrl,
-    method: 'GET',
-  }).then(function (response) {
-    console.log('Ajax Response \n-------------');
-    console.log(response);
-  });
+    let cityName = $("#cityInputLocation").val().trim()
+    console.log(cityName);
+
+    if (cityName === ''){
+       alert("Please enter a city"); 
+    } else {
+
+        const searchedCity = {
+            city: cityName,
+        }
+
+console.log (searchedCity);
+
+let savedCities =JSON.parse(localStorage.getItem("cityNameKey"));
+//defines savedCities as empty array, else will throw error
+if (!Array.isArray(savedCities)) {
+    savedCities = [];
+};
+savedCities.push(searchedCity);
+localStorage.setItem("savedCitiesKey",JSON.stringify(savedCities));
+
+    console.log("saved cities:", savedCities);
+        //clearing search input
+        $("#cityInputLocation").val('');
+    }
+});
