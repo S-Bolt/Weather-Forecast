@@ -1,7 +1,7 @@
 let searchInput = $("#citySearchForm");
 let searchButton = $("#search")
-//handle submission event 
-searchInput.submit(function(event){
+//handle search city submission event 
+function handleSearchCity(event){
     event.preventDefault();
 
     let cityName = $("#cityInputLocation").val().trim()
@@ -29,4 +29,14 @@ localStorage.setItem("savedCitiesKey",JSON.stringify(savedCities));
         //clearing search input
         $("#cityInputLocation").val('');
     }
+    return;
+};
+
+$(document).ready(function () {
+
+    $("#search").click(function(event) {
+        console.log("Button clicked");
+        handleSearchCity(event);
+
+    });
 });
