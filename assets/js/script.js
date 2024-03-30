@@ -1,7 +1,6 @@
 let searchInput = $("#citySearchForm");
 let searchButton = $("#search");
-let geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=Baltimore&limit=1&appid=1b770f237929bb21c34412c090d06664';
-let weatherApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=38&lon=-77&appid=1b770f237929bb21c34412c090d06664&units=imperial';
+
 //handle search city submission event 
 function handleSearchCity(event){
     event.preventDefault();
@@ -41,6 +40,7 @@ function handleSearchCity(event){
 //Todo Function to converty city name to geo data
 
 function getGeoData() {
+    let geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=Baltimore&limit=1&appid=1b770f237929bb21c34412c090d06664';
     
     fetch(geoApiUrl)
       .then(function (response) {
@@ -53,6 +53,7 @@ function getGeoData() {
 
 //Todo function to fetch weather data with lat/long
 function getWeatherData() {
+    let weatherApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=38&lon=-77&appid=1b770f237929bb21c34412c090d06664&units=imperial';
     
     fetch(weatherApiUrl)
       .then(function (response) {
@@ -71,4 +72,7 @@ $(document).ready(function() {
         console.log("Button clicked");
         handleSearchCity(event);
     });
+
+    getGeoData("Dallas");
+    getWeatherData();
 });
