@@ -1,46 +1,28 @@
-let searchInput = $("#citySearchForm");
+let searchForm = $("#citySearchForm");
+let cityInput = $("#cityInputLocation")
 let searchButton = $("#search");
-
+let currentCityWeather = $("#currentCityWeather");
+let fiveDayForecast = $("#5day");
+let savedCityButton = $("#savedCityButton");
 //handle search city submission event 
 function handleSearchCity(event){
     event.preventDefault();
 
-    let cityName = $("#cityInputLocation").val().trim()
+    let cityName = cityInput.val().trim()
     console.log(cityName);
 
-    if (cityName === ''){
-       alert("Please enter a city"); 
+    if (cityName) {
+      getGeoData(cityName);
     } else {
-
-        const searchedCity = {
-            city: cityName,
-        }
-
-    console.log (searchedCity);
-
-    let savedCities = JSON.parse(localStorage.getItem("savedCitiesKey")) || [];
-    //checking if city exist already/if not add local storage
-    let cityExist =false;
-    for (let i =0; i < savedCities.length; i++) {
-        if (savedCities[i].city === cityName){
-            cityExist = true;
-            console.log("city already exist");
-            return;
-        }
-    } if (!cityExist) {
-        savedCities.push(searchedCity);
-        localStorage.setItem("savedCitiesKey", JSON.stringify(savedCities));
-        console.log("City added to saved", searchedCity);
-    } else{
-        console.log("City already exist in saved ")
-    }
- };
+      (cityName = "")
+      alert("Please enter city name")
+    }                              
 };
 
-//Todo Function to converty city name to geo data
+// Function to converty city name to geo data
 
-function getGeoData() {
-    let geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=1b770f237929bb21c34412c090d06664';
+function getGeoData(cityName) {
+    let geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=1b770f237929bb21c34412c090d06664';
     
     fetch(geoApiUrl)
       .then(function (response) {
@@ -51,7 +33,7 @@ function getGeoData() {
       });
     };
 
-//Todo function to fetch weather data with lat/long
+//function to fetch weather data with lat/long
 function getWeatherData() {
     let weatherApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=1b770f237929bb21c34412c090d06664&units=imperial';
     
@@ -72,7 +54,4 @@ $(document).ready(function() {
         console.log("Button clicked");
         handleSearchCity(event);
     });
-
-    getGeoData("Dallas");
-    getWeatherData();
 });

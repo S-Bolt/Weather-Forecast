@@ -30,14 +30,14 @@
                     <button id="search" type="button" class="btn btn-primary w-100 my-3" >Search</button>
                 </div>    
                <!--saved city propagation-->
-                <div class="saved-city">
+                <div id="savedCityButton">
                     <button type="button" class="btn btn-primary w-100 my-3" >Saved City</button>
                 </div>
             </div>
             <!--single day content-->
             <div class="col-12 col-md-8 col-lg-9 ">
                 <!--I'm thinking this will be appended for each city/5 day forecast-->
-                  <div class="border border-dark p-3 my-3">
+                  <div id="currentCityWeather" class="border border-dark p-3 my-3">
                      <h1>City<span>(1/13/2024)
                                 <i id="weather-icon" class="bi bi-brightness-high-fill"></i>
                             </span> 
@@ -47,7 +47,7 @@
                         <h5>Humudity</h5>
                     </div>
                 <div class="row"><h3>5 Day Forecast</h3></div>
-                    <div class="d-flex">
+                    <div id="5day" class="d-flex">
                         <!--just a demo will need to append these later-->
                     <div id="day-1" class="flex-grow-1 bg-info mx-3"> 
                         <h4>(1/13/2024)</h4>
