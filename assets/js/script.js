@@ -1,3 +1,4 @@
+const apiKey = '1b770f237929bb21c34412c090d06664';
 let searchForm = $("#citySearchForm");
 let cityInput = $("#cityInputLocation")
 let searchButton = $("#search");
@@ -59,10 +60,9 @@ function getWeatherData(latitude,longitude) {
         })
        } else {
         alert("Error: " + response.statusText);
-      }     
-      })
-      
-
+      };     
+      });
+  
   //5day
     let fiveDayApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=' +latitude + '&lon=' + longitude +'&units=imperial&appid=1b770f237929bb21c34412c090d06664';
     
@@ -75,8 +75,8 @@ function getWeatherData(latitude,longitude) {
         })
        } else {
         alert("Error: " + response.statusText);
-      }     
-      })
+      }  ;   
+      });
       
  };
  
@@ -109,13 +109,11 @@ function renderFiveDay(fiveDay){
     return;
   };
 
-  for (var i = 0; i <fiveDay.length; i++ ){
-    //itterating through array and selecting dt_txt values for 12pm.
-    if (fiveDay[i].dt_txt.inlcudes('12:00')) {
+ ////for (let i = 0; i < fiveDay.length; i + 8 ) {
+ 
 
-      let date = fiveDay[i].dt_txt.split(' ')[0];
 
-      let fiveDayCard = $("<h4>").text(date);
+      let fiveDayCard = $("<h4>").addClass("flex-grow-1 big-info mx-3").text("hi");
 
 
       fiveDayContainer.append(fiveDayCard);
@@ -124,9 +122,9 @@ function renderFiveDay(fiveDay){
   
  
   
-  };  
-}
+   
 
+//TODO render previous searches as button on left column
 
 $(document).ready(function() {
 //click search
