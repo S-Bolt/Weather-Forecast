@@ -87,8 +87,13 @@ if (currentWeather.length === 0){
   alert("No current weather availale");
   return;
 };
-  let currentCard = $('<h1>').attr();
+  let currentCard = $('<h1>').text(currentWeather.name);
 
+  let temp = $('<h5>').text('Temp: ' + currentWeather.main.temp + ' F');
+  let humid = $('<h5>').text('Humidity: ' + currentWeather.main.humidity + ' %');
+  let wind = $('<h5>').text('Wind Speed: ' + currentWeather.wind.speed + ' mph');
+
+  currentCard.append(temp, humid, wind);
 
   currentWeatherContainer.append(currentCard);
 
