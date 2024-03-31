@@ -13,8 +13,11 @@ function handleSearchCity(event){
 
     if (cityName) {
       getGeoData(cityName);
+
+      //searchForm.textContent ='';
+      //cityInput.textContent = '';
+
     } else {
-      (cityName = "")
       alert("Please enter city name")
     }                              
 };
@@ -42,21 +45,51 @@ function getGeoData(cityName) {
     };
 
 //function to fetch weather data with lat/long
-function getWeatherData(lat,lon) {
-    let weatherApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=' +lat + '&lon=' + lon +'&units=imperial&appid=1b770f237929bb21c34412c090d06664';
-    
-    fetch(weatherApiUrl)
+function getWeatherData(latitude,longitude) {
+  //current day
+  let currentApiUrl ='https://api.openweathermap.org/data/2.5/weather?lat=' +latitude + '&lon=' + longitude +'&units=imperial&appid=1b770f237929bb21c34412c090d06664';
+
+  fetch(currentApiUrl)
       .then(function (response) {
        if (response.ok){
-        response.json().then(function (data){
+          response.json().then(function (data){
+          console.log(data);
+          renderCurrent(data);
 
         })
-       };
+       } else {
+        alert("Error: " + response.statusText);
+      }     
       })
-      };
+      
+
+  //5day
+    let fiveDayApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=' +latitude + '&lon=' + longitude +'&units=imperial&appid=1b770f237929bb21c34412c090d06664';
+    
+    fetch(fiveDayApiUrl)
+      .then(function (response) {
+       if (response.ok){
+          response.json().then(function (data){
+          console.log(data);
+          renderFiveDay(data);
+        })
+       } else {
+        alert("Error: " + response.statusText);
+      }     
+      })
+      
+ };
  
 
 //Todo function to render
+function renderCurrent(){
+
+}
+
+function renderFiveDay(){
+
+}
+
 
 $(document).ready(function() {
 //click search
