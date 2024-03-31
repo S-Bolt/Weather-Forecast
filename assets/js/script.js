@@ -83,7 +83,10 @@ function getWeatherData(latitude,longitude) {
 
 //Todo function to render
 function renderCurrent(currentWeather){
-if (currentWeather.length === 0){
+ //clearing old cards
+  currentWeatherContainer.empty();
+
+if (!currentWeather){
   alert("No current weather availale");
   return;
 };
@@ -96,6 +99,7 @@ if (currentWeather.length === 0){
   currentCard.append(temp, humid, wind);
 
   currentWeatherContainer.append(currentCard);
+
 //need to come back and add date, icon, and figure out how to make icon switch
 };
 
@@ -104,11 +108,23 @@ function renderFiveDay(fiveDay){
     alert("Five-Day forecast not  availale");
     return;
   };
-  let fiveDayCard = $("<div>");
+
+  for (var i = 0; i <fiveDay.length; i++ ){
+    //itterating through array and selecting dt_txt values for 12pm.
+    if (fiveDay[i].dt_txt.inlcudes('12:00')) {
+
+      let date = fiveDay[i].dt_txt.split(' ')[0];
+
+      let fiveDayCard = $("<h4>").text(date);
+
+
+      fiveDayContainer.append(fiveDayCard);
+    }
   
-  fiveDayContainer.append(fiveDayCard);
-  //for (var i = 0; i <currentWeather.length; i++ ){
-    
+  
+ 
+  
+  };  
 }
 
 
