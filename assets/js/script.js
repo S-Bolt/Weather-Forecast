@@ -26,25 +26,35 @@ function getGeoData(cityName) {
     
     fetch(geoApiUrl)
       .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data)
+        if (response.ok) {
+          response.json().then(function (data){
+            if (data.length> 0) {
+              //preview 0 you find lat/lon
+              let latitude = data[0].lat;
+              let longitude = data[0].lon;
+              getWeatherData(latitude,longitude);
+            };
+          });
+        } else {
+          alert("Error: " + response.statusText);
+        }     
       });
     };
 
 //function to fetch weather data with lat/long
-function getWeatherData() {
-    let weatherApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=1b770f237929bb21c34412c090d06664&units=imperial';
+function getWeatherData(lat,lon) {
+    let weatherApiUrl ='https://api.openweathermap.org/data/2.5/forecast?lat=' +lat + '&lon=' + lon +'&units=imperial&appid=1b770f237929bb21c34412c090d06664';
     
     fetch(weatherApiUrl)
       .then(function (response) {
-        return response.json();
+       if (response.ok){
+        response.json().then(function (data){
+
+        })
+       };
       })
-      .then(function (data) {
-        console.log(data)
-      });
-    };
+      };
+ 
 
 //Todo function to render
 
