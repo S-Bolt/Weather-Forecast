@@ -1,7 +1,7 @@
 let searchForm = $("#citySearchForm");
 let cityInput = $("#cityInputLocation")
 let searchButton = $("#search");
-let currentCityWeather = $("#currentCityWeather");
+let currentWeatherContainer = $("#currentWeatherContainer");
 let fiveDayForecast = $("#5day");
 let savedCityButton = $("#savedCityButton");
 //handle search city submission event 
@@ -82,12 +82,28 @@ function getWeatherData(latitude,longitude) {
  
 
 //Todo function to render
-function renderCurrent(){
+function renderCurrent(currentWeather){
+if (currentWeather.length === 0){
+  alert("No current weather availale");
+  return;
+};
+  let currentCard = $('<h1>').attr();
 
-}
 
-function renderFiveDay(){
+  currentWeatherContainer.append(currentCard);
 
+};
+
+function renderFiveDay(fiveDay){
+  if (fiveDay.length === 0){
+    alert("Five-Day forecast not  availale");
+    return;
+  }
+  //for (var i = 0; i <currentWeather.length; i++ ){
+    //let currentCard = $('<div>');
+
+
+   // currentWeatherContainer.append(currentCard);
 }
 
 
