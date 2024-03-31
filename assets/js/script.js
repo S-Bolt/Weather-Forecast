@@ -2,7 +2,7 @@ let searchForm = $("#citySearchForm");
 let cityInput = $("#cityInputLocation")
 let searchButton = $("#search");
 let currentWeatherContainer = $("#currentWeatherContainer");
-let fiveDayForecast = $("#5day");
+let fiveDayContainer = $("#5day");
 let savedCityButton = $("#savedCityButton");
 //handle search city submission event 
 function handleSearchCity(event){
@@ -96,19 +96,19 @@ if (currentWeather.length === 0){
   currentCard.append(temp, humid, wind);
 
   currentWeatherContainer.append(currentCard);
-
+//need to come back and add date, icon, and figure out how to make icon switch
 };
 
 function renderFiveDay(fiveDay){
   if (fiveDay.length === 0){
     alert("Five-Day forecast not  availale");
     return;
-  }
+  };
+  let fiveDayCard = $("<div>");
+  
+  fiveDayContainer.append(fiveDayCard);
   //for (var i = 0; i <currentWeather.length; i++ ){
-    //let currentCard = $('<div>');
-
-
-   // currentWeatherContainer.append(currentCard);
+    
 }
 
 
