@@ -103,6 +103,8 @@ if (!currentWeather){
 };
 
 function renderFiveDay(fiveDay){
+  //clearing old forecast
+  fiveDayContainer.empty();
   if (fiveDay.length === 0){
     alert("Five-Day forecast not  availale");
     return;
