@@ -109,16 +109,26 @@ function renderFiveDay(fiveDay){
     return;
   };
 
- ////for (let i = 0; i < fiveDay.length; i + 8 ) {
- 
+    let fiveDayForecast = []
+    
+ for (let i = 7; i < fiveDay.list.length; i += 8 ) {
+    let dayForecast = fiveDay.list[i];
+    console.log(dayForecast[i]);
+    fiveDayForecast.push(dayForecast);
+    
+  };
+  console.log(fiveDayForecast);
+     
+  for (let i = 0; i <fiveDayForecast.lenghth; i++){
 
 
       let fiveDayCard = $("<h4>").addClass("flex-grow-1 big-info mx-3").text("hi");
 
 
       fiveDayContainer.append(fiveDayCard);
-    }
-  
+    };
+};
+
   
  
   
