@@ -112,7 +112,7 @@ function renderFiveDay(fiveDay){
     //initialize empty array to hold 5 day forecast
     let fiveDayForecast = []
     //itterate through fiveday.list
- for (let i = 7; i < fiveDay.list.length; i += 8 ) {
+ for (let i = 5; i < fiveDay.list.length; i += 8 ) {
     let dayForecast = fiveDay.list[i];
     fiveDayForecast.push(dayForecast);
     };
