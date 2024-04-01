@@ -90,14 +90,13 @@ if (!currentWeather){
   alert("No current weather availale");
   return;
 };
-  let currentCard = $('<h1>').text(currentWeather.name);
+  let currentCard = $('<div>').text(currentWeather.name).css({'font-size': '24px', 'font-weight': 'bold'});
 
   let temp = $('<h5>').text('Temp: ' + currentWeather.main.temp + ' F');
   let humid = $('<h5>').text('Humidity: ' + currentWeather.main.humidity + ' %');
   let wind = $('<h5>').text('Wind Speed: ' + currentWeather.wind.speed + ' mph');
 
   currentCard.append(temp, humid, wind);
-
   currentWeatherContainer.append(currentCard);
 
 //need to come back and add date, icon, and figure out how to make icon switch
@@ -108,25 +107,29 @@ function renderFiveDay(fiveDay){
     alert("Five-Day forecast not  availale");
     return;
   };
-
+    //initialize empty array to hold 5 day forecast
     let fiveDayForecast = []
-    
+    //itterate through fiveday.list
  for (let i = 7; i < fiveDay.list.length; i += 8 ) {
     let dayForecast = fiveDay.list[i];
-    console.log(dayForecast[i]);
     fiveDayForecast.push(dayForecast);
-    
-  };
-  console.log(fiveDayForecast);
-     
-  for (let i = 0; i <fiveDayForecast.lenghth; i++){
-
-
-      let fiveDayCard = $("<h4>").addClass("flex-grow-1 big-info mx-3").text("hi");
-
-
-      fiveDayContainer.append(fiveDayCard);
     };
+
+  console.log(fiveDayForecast);
+     //itterate through new array, fiveDayForecast and append
+  for (let i = 0; i <fiveDayForecast.length; i++){
+
+    let fiveDayCard = $("<div>").addClass("flex-grow-1 bg-info mx-3");
+    let icon = $('<i>').attr('id', 'weather-icon').addClass('bi bi-brightness-high-fill');
+    let date = $('<h4>').text(fiveDayForecast[i].dt_txt.split(' ')[0]);
+    let temp = $('<h5>').text('Temp: ' + fiveDayForecast[i].main.temp + ' F');
+    let humid = $('<h5>').text('Humidity: ' + fiveDayForecast[i].main.humidity + ' %');
+    let wind = $('<h5>').text('Wind Speed: ' + fiveDayForecast[i].wind.speed + ' mph');
+
+      //append children to fiveDayCard then append car to containter
+      fiveDayCard.append(date, icon, temp, humid, wind);
+      fiveDayContainer.append(fiveDayCard);
+ };
 };
 
   
