@@ -26,7 +26,7 @@ function handleSearchCity(event){
 // Function to converty city name to geo data
 
 function getGeoData(cityName) {
-    let geoApiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=1b770f237929bb21c34412c090d06664';
+    let geoApiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=1b770f237929bb21c34412c090d06664';
     
     fetch(geoApiUrl)
       .then(function (response) {
@@ -91,12 +91,12 @@ if (!currentWeather){
   return;
 };
   let currentCard = $('<div>').text(currentWeather.name).css({'font-size': '24px', 'font-weight': 'bold'});
-
+  let icon = $('<i>').attr('id', 'weather-icon').addClass('bi bi-brightness-high-fill');
   let temp = $('<h5>').text('Temp: ' + currentWeather.main.temp + ' F');
   let humid = $('<h5>').text('Humidity: ' + currentWeather.main.humidity + ' %');
   let wind = $('<h5>').text('Wind Speed: ' + currentWeather.wind.speed + ' mph');
 
-  currentCard.append(temp, humid, wind);
+  currentCard.append(icon, temp, humid, wind);
   currentWeatherContainer.append(currentCard);
 
 //need to come back and add date, icon, and figure out how to make icon switch
