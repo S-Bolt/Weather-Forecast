@@ -35,7 +35,7 @@ To run this application locally, follow these steps:
 
 Clone the repository:
 
-git clone https://github.com/your-username/Weather-Forecast.git
+git clone https://github.com/S-Bolt/Weather-Forecast.git
 
 Navigate to the project directory:
 
