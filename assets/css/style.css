@@ -1,17 +1,169 @@
-#banner {
-    background: url('./assets/images/weather-banner.jpg') no-repeat center center;
-    overflow: hidden;
-  }
-section.container-fluid .current-card {
-    background-color: rgba(173, 216, 230, 0.5);
-    border-radius: 10px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
+body, html {
+  height: 100%;
+  background: url('../images/sunnyMountains.jpg');
+  background-size: cover;
+}
+h1 {
+  color: white;
+  font-size: 90px;
+  min-height: 110px;
+}
+h3 {
+  color: white;
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.row {
+  position: fixed;
+  
+}
+
+.current {
+  max-width: 200px;
+  margin-left: 5%;
+ 
+}
+
+
+/* Right Column: Additional Content */
+.additionalContentCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  margin-left: -80px;
+  max-height: 38%;
+ 
+}
+
+/* ========================
+   Currrent Display Styles
+   ======================== */
+
+#currentWeatherContainer {
+  background-color: rgba(255, 255, 255, 0.20);
+  text-align: center;
+  height: 450px;
+}
+.current-card h5 {
+  font-size: 16px;
+  color: white;
+  font-weight: 200;
+}
+
+.current-card h3 {
+  font-size: 20px;
+  color: white;
+  font-weight: 200;
+}
+.current-card h3.title {
+  margin-bottom: 30px;
+}
+
+.current-card h5.label {
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+/* ========================
+   Saved Search Display Styles
+   ======================== */
+
+.searches {
+  background-color: rgba(255, 255, 255, 0.20);
+  text-align: center;
+  height: 250px;
+}
+
+.saved-search-button {
+  background-color: rgba(255, 255, 255, 0); /*fulltransparent*/
+  border: none;
+}
+
+
+/* ========================
+   City Search Display Styles
+   ======================== */
+
+.city-search {
+  max-width: 500px;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.20);
+
+ 
+}
+.city-search-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.city-search-text-container h3{
+  color: #FA2495;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+#cityInputLocation {
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  color: white;
+  margin-top: 50px;
+
+}
+#cityInputLocation::placeholder {
+  color: rgba(255, 255, 255, 0.50); 
+}
+
+#search.btn {
+border: solid white;
+border-width: .5px;
+margin-top: 10px;
+
+
+}
+
+.five-day {
+  width: 800px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.20);
+ 
+
+}
+
+
+#additionalContent {
+  max-width: 200px;
+  background-color: rgba(255, 255, 255, 0);
+  padding-left: -50px;
+}
+
+.outline-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 10% 10% 0 10%; 
+  box-sizing: border-box;
+}
+
+.outline-container::after {
+  content: "";
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  border: 4px solid rgb(255, 255, 255);
+  border-top-left-radius: 20px;  
+  border-top-right-radius: 20px; 
+  border-bottom: none;          
+  pointer-events: none;          
+}
+
+
+
+
 
 .five-day-card {
     background-color: rgba(173, 216, 230, 0.5);

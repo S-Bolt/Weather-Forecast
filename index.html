@@ -12,49 +12,53 @@
     <title>Weather forecast</title>
 </head>
 <body>
-    <!--header-->
-    <header id="banner" class="container-fluid">
-        <img src="./assets/images/Weather3.png" alt="Weather Banner" class="img-fluid w-100" />
-    </header>
+    <div class="outline-container">
     <!--section-->
-    <section class="container-fluid d-flex flex-column vh-50 bg-light">
-        <div class="row d-flex">
-            <!--city search location-->
-            <div class="col-12 col-md-4 col-lg-3">
-               <div><h1>Search for a City:</h1></div> 
-               <!--city input-->
-               <div class="border-bottom">
-                    <form id="citySearchForm">
-                         <input type="text" id="cityInputLocation" class="form-control">
-                    </form>
-                    <button id="search" type="button" class="btn btn-primary w-100 my-3" >Search</button>
-                </div>    
-               <!--saved city propagation-->
-                <div id="savedCityButton">
-                    <h2 class="my-3" >Recent Searches</h2>
+    <section class="container-fluid vh-100">
+        <!-- Main Row: Three Columns -->
+        <div class="row h-100">
+            <!-- Left Column: Current Weather and Saved Searches (Stacked) -->
+            <div class="current col-12 col-md-4 col-lg-3 d-flex flex-column">
+                <div id="currentWeatherContainer" class="p-3 my-3 rounded shadow">
+                    <h3 class="mt-3 mx-3">Current</h3>
+                </div>
+                <div id="savedCityButton" class="searches p-3 my-3 rounded shadow">
+                    <h3 class="my-3">Saved Searches</h3>
                 </div>
             </div>
-            <!--single day content-->
-            <div class="col-12 col-md-8 col-lg-9 ">
-                <!--I'm thinking this will be appended for each city/5 day forecast-->
-                <h3 class="mt-3 mx-3">Today's Weather</h3>
-                  <div id="currentWeatherContainer" class=" p-3 my-3">
-                  </div>
-                <div>
-                    <h3 class="mx-3 ">5 Day Forecast</h3>
-                </div class="">
-                    <div id="5day" class="d-flex flex-wrap justify-content-start p-3">
+
+            <!-- Middle Column: City Search and 5-Day Forecast -->
+            <div class="midCol col-12 col-md-4 col-lg-6 d-flex flex-column">
+                <div class="city-search p-3 my-3 rounded shadow">
+                    <div class="city-search-text-container">
+                        <h3>City Search</h3>
+                        <!-- City Input -->
+                        <div class="mb-3 mt-3">
+                            <form id="citySearchForm" class="d-flex">
+                                <input type="text" id="cityInputLocation" class="form-control me-2" placeholder="Enter city name.."> 
+                            </form>
+                            <button id="search" type="button" class="btn">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <div  id= "largeType" class="large-type py-3 ">
+                    <h1></h1>
+                </div>
+                <div class="five-day p-3 my-3 rounded shadow">
+                    <div id="5day" class="d-flex flex-wrap justify-content-start p-3"></div>
+                </div>
+            </div>
+
+            <!-- Right Column: Additional Content -->
+            <div class="additionalContentCol col-12 col-md-4 col-lg-3 d-flex flex-column">
+                <div id="additionalContent" class="p-3 my-3 ">
+                    <h3 class="mt-3 mx-3">Additional Content</h3>
+                    <h3 class="mt-3 mx-3">Additional Content</h3>
                 </div>
             </div>
         </div>
+    </div>
     </section>
-
-    
-
-
-
-
-
 <script
     src="https://code.jquery.com/jquery-3.7.1.js"
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="

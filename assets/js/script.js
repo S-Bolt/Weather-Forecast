@@ -6,6 +6,7 @@ let searchButton = $("#search");
 let currentWeatherContainer = $("#currentWeatherContainer");
 let fiveDayContainer = $("#5day");
 let searchedCityButton = $("#savedCityButton");
+let largeTypeFont = $("#largeType");
 
 searchButton.on('click', handleSearchCity);
 
@@ -33,6 +34,12 @@ function saveCity(cityName){
   let cities = JSON.parse(localStorage.getItem('cities')) || []
 
   if (!cities.includes(cityName)) {
+
+    //limit cities to 4
+    if(cities.length >= 4){
+      cities.shift();
+    }
+    
     cities.push(cityName);
     localStorage.setItem('cities', JSON.stringify(cities));
     renderSavedCityButton(cityName);
@@ -42,6 +49,10 @@ function saveCity(cityName){
 // Load saved cities from localStorage
 function loadSavedCities() {
   let cities = JSON.parse(localStorage.getItem('cities')) || [];
+
+  cities = cities.slice(-4);
+  searchedCityButton.empty();
+
   cities.forEach(city => {
     renderSavedCityButton(city);
   });
@@ -50,7 +61,7 @@ function loadSavedCities() {
 // Render saved city button
 function renderSavedCityButton(cityName) {
   let cityButton = $('<button>')
-    .addClass('btn btn-secondary w-100 my-1')
+    .addClass('saved-search-button btn btn-secondary w-100 my-1')
     .text(cityName)
     .on('click', function() {
       getGeoData(cityName);
@@ -127,18 +138,27 @@ if (!currentWeather){
   return;
 };
   let currentCard = $('<div>').addClass('current-card');
-  let cityName = $('<h2>').text(currentWeather.name);
-  let iconUrl = `https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`;
-  let icon = $('<img>').attr('src', iconUrl).addClass('weather-icon');
-  let description = $('<h4>').text(currentWeather.weather[0].description);
-  let temp = $('<h5>').text('Temp: ' + currentWeather.main.temp + ' F');
-  let humid = $('<h5>').text('Humidity: ' + currentWeather.main.humidity + ' %');
-  let wind = $('<h5>').text('Wind Speed: ' + currentWeather.wind.speed + ' mph');
+  let title = $('<h3>').addClass('title').text('Current')
+  let temp = $('<h5>').text(currentWeather.main.temp + ' \u00B0f');
+  let tempLabel = $('<h5>').addClass('label').text('temp')
+  let feels = $('<h5>').text(currentWeather.main.feels_like + ' \u00B0f')
+  let feelsLabel = $('<h5>').addClass('label').text('feels')
+  let humid = $('<h5>').text(currentWeather.main.humidity + ' %');
+  let humidLabel= $('<h5>').addClass('label').text('hum');
+  let wind = $('<h5>').text(currentWeather.wind.speed + ' mph');
+  let windLabel= $('<h5>').addClass('label').text('wind');
+  let description = $('<h5>').text(currentWeather.weather[0].description);
 
-  currentCard.append(cityName, icon, description, temp, humid, wind);
+  currentCard.append(title, temp, tempLabel, feels, feelsLabel, wind, windLabel, humid, humidLabel, description,);
   currentWeatherContainer.append(currentCard);
 
-//need to come back and add date, icon, and figure out how to make icon switch
+  // Main font rendering in center 
+  largeTypeFont.empty();
+
+  let largeType = $('<h1>').text(currentWeather.name)
+
+  largeTypeFont.append(largeType)
+
 };
 
 function renderFiveDay(fiveDay){
@@ -183,12 +203,6 @@ function renderFiveDay(fiveDay){
  };
 };
 
-  
- 
-  
-   
-
-//TODO render previous searches as button on left column
 
 $(document).ready(function() {
 //click search
