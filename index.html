@@ -43,21 +43,23 @@
                         </div>
                     </div>
                 </div>
-                <div  id= "largeType" class="large-type py-3 ">
+                <div  id= "largeType" class="large-type py-3">
                     <h1></h1>
                 </div>
-                <div class="five-day rounded">
-                    <div id="5day" class="d-flex"></div>
+                <div class="five-day rounded position-relative">
+                    <canvas id="temperatureChart"  ></canvas>
+                    <div id="five-day-container" class="d-flex shadow"></div>
+                    
                 </div>
             </div>
 
             <!-- Right Column: Additional Content -->
-            <div class="additionalContentCol col-12 col-md-4 col-lg-3 d-flex flex-column">
-                <div id="additionalContent" class="p-3 my-3 ">
+            
+                <div id="additionalContent" class="p-3 my-3 d-flex flex-column">
                     <h3 class="mt-3 mx-3"></h3>
                     <h3 class="mt-3 mx-3"></h3>
                 </div>
-            </div>
+           
         </div>
     </div>
     </section>
@@ -68,7 +70,9 @@
 </script>
 <script 
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"  
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./assets/js/script.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ let searchForm = $("#citySearchForm");
 let cityInput = $("#cityInputLocation")
 let searchButton = $("#search");
 let currentWeatherContainer = $("#currentWeatherContainer");
-let fiveDayContainer = $("#5day");
+let fiveDayContainer = $("#five-day-container");
 let searchedCityButton = $("#savedCityButton");
 let largeTypeFont = $("#largeType");
 let additionalContent =$("#additionalContent");
@@ -186,13 +186,14 @@ if (!currentWeather){
 function renderFiveDay(fiveDay){
   //clearing old forecast
   fiveDayContainer.empty();
+  
   if (fiveDay.length === 0){
     alert("Five-Day forecast not  availale");
     return;
   };
 
   // Define days of the week array
-  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
 
     //initialize empty array to hold data by day
     let dailyData = []
@@ -214,6 +215,10 @@ console.log('Daily Data Group:',dailyData)
      uniqueDates = uniqueDates.slice(1); 
  }
 
+   // Initialize arrays to store data for chart rendering
+   const tempMovements = [];
+   
+
      //itterate through new array,  and append
   for(let i = 0; i < 5; i++){
     let date = uniqueDates[i]
@@ -222,19 +227,77 @@ console.log('Daily Data Group:',dailyData)
     let tempMax = Math.max(...dayEntries.map(entry => entry.main.temp_max));
     let dateObject= new Date(date);
     let dayOfWeek = daysOfWeek[dateObject.getDay()];
+
+    // Add data to temperature arrays for chart rendering
+    tempMovements.push(Math.round(tempMax));
+    tempMovements.push(Math.round(tempMin));
+
     //Create card and contentcc
-    let fiveDayCard = $("<div>").addClass("five-day-card");
+    let fiveDayCard = $("<div>").addClass("five-day-card shadow");
     let dayName = $('<h4>').text(dayOfWeek);
-    let description = $('<h5>').text(dayEntries[0].weather[0].description);
-    let maxTemp = $('<h5>').text(tempMax + ' \u00B0f');
-    let minTemp = $('<h5>').text(tempMin + ' \u00B0f');
+    let description = $('<h5>').addClass("h5-description").text(dayEntries[0].weather[0].description);
+    let maxTemp = $('<h5>').text('hi ' + Math.round(tempMax) + ' \u00B0f');
+    let minTemp = $('<h5>').text('low ' + Math.round(tempMin) + ' \u00B0f');
   
 
       //append children to fiveDayCard then append car to containter
       fiveDayCard.append(dayName, maxTemp, minTemp, description);
       fiveDayContainer.append(fiveDayCard);
  };
+
+ 
+ //Render teh chart with data collected above
+  renderTempChart( tempMovements)
 };
+
+
+let chartInstance = null;
+// Function to render the temperature chart
+function renderTempChart(tempMovements) {
+   // Destroy the previous chart instance if it exists
+   if (chartInstance) {
+    chartInstance.destroy();
+  }
+  // Get the canvas element
+  const ctx = document.getElementById('temperatureChart').getContext('2d');
+
+  // Create the line chart
+  chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: Array(tempMovements.length).fill(''), 
+      datasets: [
+        {
+          label: '', 
+          data: tempMovements,
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          fill: false,
+          tension: 0.3, 
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false, 
+        },
+        tooltip: {
+          enabled: false 
+        }
+      },
+      scales: {
+        x: {
+          display: false, 
+        },
+        y: {
+          display: false, 
+        }
+      }
+    }
+  });
+}
 
 
 $(document).ready(function() {

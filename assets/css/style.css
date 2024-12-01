@@ -5,10 +5,12 @@ body, html {
 }
 h1 {
   color: white;
-  font-size: 130px;
-  min-height: 110px;
+  font-size: 5vw;
+  min-height: 10vh;
   font-family: 'Poppins', sans-serif;
   width: 100%;
+  white-space: nowrap;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
 }
 h3 {
   color: white;
@@ -18,7 +20,6 @@ h3 {
 
 .row {
   position: fixed;
-  
 }
 
 .current {
@@ -37,8 +38,9 @@ h3 {
 #currentWeatherContainer {
   background-color: rgba(255, 255, 255, 0.20);
   text-align: center;
-  height: 450px;
+  height: 40vh;
 }
+
 .current-card h5 {
   font-size: 16px;
   color: white;
@@ -51,12 +53,12 @@ h3 {
   font-weight: 200;
 }
 .current-card h3.title {
-  margin-bottom: 30px;
+  margin-bottom: 3vh;
 }
 
 .current-card h5.label {
   margin-top: -10px;
-  margin-bottom: 30px;
+  margin-bottom: 3vh;
 }
 
 /* ========================
@@ -66,7 +68,7 @@ h3 {
 .searches {
   background-color: rgba(255, 255, 255, 0.20);
   text-align: center;
-  height: 250px;
+  height: 27vh;
 }
 
 .saved-search-button {
@@ -78,10 +80,11 @@ h3 {
 /* ========================
    City Search Display Styles
    ======================== */
+   
 
 .city-search {
-  max-width: 366px;
-  max-height: 230px;
+  max-width: 25vw;
+  max-height: 25vh;
   height: 300px;
   background-color: rgba(255, 255, 255, 0.20);
 
@@ -123,34 +126,35 @@ border-width: .5px;
 color: #FA2495;
 margin-top: 10px;
 width: 200px;
-border-radius: 25px; /* Adds rounding to the edges */
+border-radius: 25px; 
 }
 
 #additionalContent {
-  max-width: 200px;
+  max-width: 20vw;
   background-color: rgba(255, 255, 255, 0);
-  padding-left: -50px;
+  margin-left: -10vw;
+  
+
 }
 
 #additionalContent .large-temp {
- font-size: 90px;
+ font-size: 5vw;
  font-family: 'Poppins', sans-serif;
+ text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+ 
 }
 
 #additionalContent .large-status {
-  font-size: 50px;
+  font-size: 2vw;
   font-family: 'Poppins', sans-serif;
- }
-
-/* Right Column: Additional Content */
-.additionalContentCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; 
-  margin-left: -170px;
-  max-height: 30%;
- 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  
 }
+.contentCard {
+  padding-left: 2.5vw;
+  margin-top: -3vh;
+}
+
 
 .outline-container {
   position: relative;
@@ -179,23 +183,94 @@ border-radius: 25px; /* Adds rounding to the edges */
    Five Day Forcast Display Styles
    ======================== */
 .five-day {
-  width: 800px;
-  height: 250px;
+  position: relative;   
+  width: 52vw;
+  height: 27vh;
   background-color: rgba(255, 255, 255, 0);
   display: flex;             
-  overflow: hidden;         
+  overflow: hidden;  
+        
 }
 
 .five-day-card {
-    background-color: rgba(173, 216, 230, 0.5);
+  position: relative;   
+    background-color: rgba(173, 216, 230, 0.2);
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     flex: 1 1 calc(20% - 20px);
     height: 250px;
-    min-width: 150px;
-    margin-right: 5px;
+    min-width: 10vw;
+    margin-right: 11px;
     display: flex;                 
     flex-direction: column;                   
     text-align: center; 
+    color: white; 
 }
+
+.five-day-card h4 {
+  font-size: 20px;
+  font-weight: 200;
+  z-index: 2;
+}
+.five-day-card h5 {
+  font-size: 16px;
+  font-weight: 200;
+  z-index: 2;
+}
+.h5-description{
+  padding-top: 110px;
+}
+
+#temperatureChart {
+  position: absolute;
+  top: 30%;                          
+  left: 0;                
+  width: 100% !important;                     
+  height: 50%!important;                    
+  z-index: 1;                       
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ========================
+   Media Queries for Responsive Design
+   ======================== */
+/* Large Screens (e.g., Desktop) */
+@media (max-width: 1420px) {
+  .five-day {
+    margin-top: 6.5vh;
+  }
+
+  #currentWeatherContainer {
+    height: 45vh;
+  }
   
+  .contentCard {
+    padding-left: 1vw;
+    
+  }
+
+  #additionalContent .large-temp {
+    font-size: 6vw;
+
+   }
+   
+   #additionalContent .large-status {
+     font-size: 3vw;
+   }
+}
+
+@media (max-width: 1000px) {
+  .five-day {
+    margin-top: 6.5vh;
+  }
+
+  #currentWeatherContainer {
+    height: 45vh;
+  }
+  
+  .contentCard {
+    padding-left: 7vw;
+  
+  }
+  
+}
