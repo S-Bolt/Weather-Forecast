@@ -5,8 +5,10 @@ body, html {
 }
 h1 {
   color: white;
-  font-size: 90px;
+  font-size: 130px;
   min-height: 110px;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
 }
 h3 {
   color: white;
@@ -26,15 +28,7 @@ h3 {
 }
 
 
-/* Right Column: Additional Content */
-.additionalContentCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end; 
-  margin-left: -80px;
-  max-height: 38%;
- 
-}
+
 
 /* ========================
    Currrent Display Styles
@@ -86,7 +80,8 @@ h3 {
    ======================== */
 
 .city-search {
-  max-width: 500px;
+  max-width: 366px;
+  max-height: 230px;
   height: 300px;
   background-color: rgba(255, 255, 255, 0.20);
 
@@ -104,13 +99,19 @@ h3 {
   font-weight: 400;
   font-size: 20px;
 }
-
+.search-button-container {
+  margin-top: -10px;
+}
 #cityInputLocation {
   background-color: rgba(255, 255, 255, 0);
   text-align: center;
   color: white;
   margin-top: 50px;
-
+  width: 200px;
+  border: solid #FA2495;
+  border-width: .5px;
+  border-radius: 25px;
+ 
 }
 #cityInputLocation::placeholder {
   color: rgba(255, 255, 255, 0.50); 
@@ -119,24 +120,36 @@ h3 {
 #search.btn {
 border: solid white;
 border-width: .5px;
+color: #FA2495;
 margin-top: 10px;
-
-
+width: 200px;
+border-radius: 25px; /* Adds rounding to the edges */
 }
-
-.five-day {
-  width: 800px;
-  height: 250px;
-  background-color: rgba(255, 255, 255, 0.20);
- 
-
-}
-
 
 #additionalContent {
   max-width: 200px;
   background-color: rgba(255, 255, 255, 0);
   padding-left: -50px;
+}
+
+#additionalContent .large-temp {
+ font-size: 90px;
+ font-family: 'Poppins', sans-serif;
+}
+
+#additionalContent .large-status {
+  font-size: 50px;
+  font-family: 'Poppins', sans-serif;
+ }
+
+/* Right Column: Additional Content */
+.additionalContentCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+  margin-left: -170px;
+  max-height: 30%;
+ 
 }
 
 .outline-container {
@@ -162,17 +175,27 @@ margin-top: 10px;
 }
 
 
-
-
+/* ========================
+   Five Day Forcast Display Styles
+   ======================== */
+.five-day {
+  width: 800px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0);
+  display: flex;             
+  overflow: hidden;         
+}
 
 .five-day-card {
     background-color: rgba(173, 216, 230, 0.5);
     border-radius: 10px;
-    margin-top: 20px;
-    width: 100%;
-    max-width: 500px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding-left: 20px;
-    padding-bottom: 20px;
+    flex: 1 1 calc(20% - 20px);
+    height: 250px;
+    min-width: 150px;
+    margin-right: 5px;
+    display: flex;                 
+    flex-direction: column;                   
+    text-align: center; 
 }
   

@@ -7,6 +7,7 @@ let currentWeatherContainer = $("#currentWeatherContainer");
 let fiveDayContainer = $("#5day");
 let searchedCityButton = $("#savedCityButton");
 let largeTypeFont = $("#largeType");
+let additionalContent =$("#additionalContent");
 
 searchButton.on('click', handleSearchCity);
 
@@ -101,7 +102,7 @@ function getWeatherData(latitude,longitude) {
       .then(function (response) {
        if (response.ok){
           response.json().then(function (data){
-          console.log(data);
+          console.log('current:', data);
           renderCurrent(data);
 
         })
@@ -117,7 +118,7 @@ function getWeatherData(latitude,longitude) {
       .then(function (response) {
        if (response.ok){
           response.json().then(function (data){
-          console.log(data);
+          console.log('5 day:', data);
           renderFiveDay(data);
         })
        } else {
@@ -132,6 +133,8 @@ function getWeatherData(latitude,longitude) {
 function renderCurrent(currentWeather){
  //clearing old cards
   currentWeatherContainer.empty();
+  largeTypeFont.empty();
+  additionalContent.empty();
 
 if (!currentWeather){
   alert("No current weather availale");
@@ -139,27 +142,46 @@ if (!currentWeather){
 };
   let currentCard = $('<div>').addClass('current-card');
   let title = $('<h3>').addClass('title').text('Current')
-  let temp = $('<h5>').text(currentWeather.main.temp + ' \u00B0f');
+  let temp = $('<h5>').text(Math.round(currentWeather.main.temp) + ' \u00B0f');
   let tempLabel = $('<h5>').addClass('label').text('temp')
-  let feels = $('<h5>').text(currentWeather.main.feels_like + ' \u00B0f')
+  let feels = $('<h5>').text(Math.round(currentWeather.main.feels_like) + ' \u00B0f')
   let feelsLabel = $('<h5>').addClass('label').text('feels')
-  let humid = $('<h5>').text(currentWeather.main.humidity + ' %');
+  let humid = $('<h5>').text(Math.round(currentWeather.main.humidity) + ' %');
   let humidLabel= $('<h5>').addClass('label').text('hum');
-  let wind = $('<h5>').text(currentWeather.wind.speed + ' mph');
+  let wind = $('<h5>').text(Math.round(currentWeather.wind.speed) + ' mph');
   let windLabel= $('<h5>').addClass('label').text('wind');
   let description = $('<h5>').text(currentWeather.weather[0].description);
 
-  currentCard.append(title, temp, tempLabel, feels, feelsLabel, wind, windLabel, humid, humidLabel, description,);
+  currentCard.append(
+    title, 
+    temp, 
+    tempLabel, 
+    feels, 
+    feelsLabel, 
+    wind, 
+    windLabel, 
+    humid, 
+    humidLabel, 
+    description,
+  );
+
   currentWeatherContainer.append(currentCard);
 
   // Main font rendering in center 
-  largeTypeFont.empty();
-
   let largeType = $('<h1>').text(currentWeather.name)
 
   largeTypeFont.append(largeType)
 
+  //Rendering of larege font temp and weather status on right 
+  let contentCard = $('<div>').addClass('contentCard');
+  let largeFontTemp = $('<h3>').text(Math.round(currentWeather.main.temp)).addClass('large-temp')
+  let largeFontStatus =$('<h3>').text(currentWeather.weather[0].description).addClass('large-status')
+
+  contentCard.append(largeFontTemp, largeFontStatus)
+  additionalContent.append(contentCard)
+
 };
+
 
 function renderFiveDay(fiveDay){
   //clearing old forecast
@@ -168,37 +190,48 @@ function renderFiveDay(fiveDay){
     alert("Five-Day forecast not  availale");
     return;
   };
-    //initialize empty array to hold 5 day forecast
-    let fiveDayForecast = []
+
+  // Define days of the week array
+  const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    //initialize empty array to hold data by day
+    let dailyData = []
     //itterate through fiveday.list
- for (let i = 5; i < fiveDay.list.length; i += 8 ) {
-    let dayForecast = fiveDay.list[i];
-    fiveDayForecast.push(dayForecast);
-    };
+    fiveDay.list.forEach(entry => {
+      let date = entry.dt_txt.split(' ')[0]; 
 
-  console.log(fiveDayForecast);
+      if (!dailyData[date]) {
+          dailyData[date] = [];  
+      }
+      dailyData[date].push(entry);
+  }    
+);
+console.log('Daily Data Group:',dailyData)
 
-   const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-     //itterate through new array, fiveDayForecast and append
-  for (let i = 0; i <fiveDayForecast.length; i++){
+ // Extract the unique dates and skip the current day if it's included
+ let uniqueDates = Object.keys(dailyData);
+ if (uniqueDates.length > 5) {
+     uniqueDates = uniqueDates.slice(1); 
+ }
 
-    // Get the date from the API data and convert it to a day of the week
-    let dateStr = fiveDayForecast[i].dt_txt.split(' ')[0]; 
-    let date = new Date(dateStr);
-    let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let dayOfWeek = daysOfWeek[date.getDay()];
-
-    let fiveDayCard = $("<div>").addClass("five-day-card flex-grow-1 mx-3");
-    let iconUrl = `https://openweathermap.org/img/wn/${fiveDayForecast[i].weather[0].icon}@2x.png`;
-    let icon = $('<img>').attr('src', iconUrl).addClass('weather-icon');
+     //itterate through new array,  and append
+  for(let i = 0; i < 5; i++){
+    let date = uniqueDates[i]
+    let dayEntries = dailyData[date];
+    let tempMin = Math.min(...dayEntries.map(entry => entry.main.temp_min));
+    let tempMax = Math.max(...dayEntries.map(entry => entry.main.temp_max));
+    let dateObject= new Date(date);
+    let dayOfWeek = daysOfWeek[dateObject.getDay()];
+    //Create card and contentcc
+    let fiveDayCard = $("<div>").addClass("five-day-card");
     let dayName = $('<h4>').text(dayOfWeek);
-    let description = $('<h5>').text(fiveDayForecast[i].weather[0].description);
-    let temp = $('<h5>').text('Temp: ' + fiveDayForecast[i].main.temp + ' F');
-    let humid = $('<h5>').text('Humidity: ' + fiveDayForecast[i].main.humidity + ' %');
-    let wind = $('<h5>').text('Wind Speed: ' + fiveDayForecast[i].wind.speed + ' mph');
+    let description = $('<h5>').text(dayEntries[0].weather[0].description);
+    let maxTemp = $('<h5>').text(tempMax + ' \u00B0f');
+    let minTemp = $('<h5>').text(tempMin + ' \u00B0f');
+  
 
       //append children to fiveDayCard then append car to containter
-      fiveDayCard.append(dayName, icon, description, temp, humid, wind);
+      fiveDayCard.append(dayName, maxTemp, minTemp, description);
       fiveDayContainer.append(fiveDayCard);
  };
 };
