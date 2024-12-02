@@ -1,8 +1,4 @@
-body, html {
-  height: 100%;
-  background: url('../images/sunnyMountains.jpg');
-  background-size: cover;
-}
+
 h1 {
   color: white;
   font-size: 5vw;
@@ -36,7 +32,7 @@ h3 {
    ======================== */
 
 #currentWeatherContainer {
-  background-color: rgba(255, 255, 255, 0.20);
+  background-color: rgba(0, 0, 0, 0.3);
   text-align: center;
   height: 40vh;
 }
@@ -66,7 +62,7 @@ h3 {
    ======================== */
 
 .searches {
-  background-color: rgba(255, 255, 255, 0.20);
+  background-color: rgba(0, 0, 0, 0.3);
   text-align: center;
   height: 27vh;
 }
@@ -86,7 +82,7 @@ h3 {
   max-width: 25vw;
   max-height: 25vh;
   height: 300px;
-  background-color: rgba(255, 255, 255, 0.20);
+  background-color: rgba(0, 0, 0, 0.3);
 
  
 }
@@ -103,7 +99,7 @@ h3 {
   font-size: 20px;
 }
 .search-button-container {
-  margin-top: -10px;
+  margin-top: -30px;
 }
 #cityInputLocation {
   background-color: rgba(255, 255, 255, 0);
@@ -117,7 +113,7 @@ h3 {
  
 }
 #cityInputLocation::placeholder {
-  color: rgba(255, 255, 255, 0.50); 
+  color: rgba(255, 255, 255, 0.80); 
 }
 
 #search.btn {
@@ -151,7 +147,7 @@ border-radius: 25px;
   
 }
 .contentCard {
-  padding-left: 2.5vw;
+  padding-left: 3vw;
   margin-top: -3vh;
 }
 
@@ -194,7 +190,7 @@ border-radius: 25px;
 
 .five-day-card {
   position: relative;   
-    background-color: rgba(173, 216, 230, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     flex: 1 1 calc(20% - 20px);
     height: 250px;
@@ -217,7 +213,7 @@ border-radius: 25px;
   z-index: 2;
 }
 .h5-description{
-  padding-top: 110px;
+  padding-top: 12vh;
 }
 
 #temperatureChart {
@@ -229,6 +225,40 @@ border-radius: 25px;
   z-index: 1;                       
   pointer-events: none;
   overflow: hidden;
+}
+
+/* ========================
+   Snowflakes
+   ======================== */
+
+#snowfall-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; 
+  z-index: 0; 
+ 
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  font-size: 1.5rem;
+  color: rgb(250, 250, 250)!important;
+  animation: fall linear infinite;
+ 
+ 
+}
+
+@keyframes fall {
+  0% {
+      transform: translateY(0) rotate(0deg);
+  }
+  100% {
+      transform: translateY(100vh) rotate(360deg);
+  }
 }
 
 /* ========================
@@ -271,6 +301,9 @@ border-radius: 25px;
   .contentCard {
     padding-left: 7vw;
   
+  }
+  .h5-description{
+    padding-top: 11vh;
   }
   
 }

@@ -1,3 +1,4 @@
+import  updateBackground  from './background.js';
 const apiKey = '1b770f237929bb21c34412c090d06664';
 
 let searchForm = $("#citySearchForm");
@@ -8,6 +9,11 @@ let fiveDayContainer = $("#five-day-container");
 let searchedCityButton = $("#savedCityButton");
 let largeTypeFont = $("#largeType");
 let additionalContent =$("#additionalContent");
+
+// Set the default background on page load
+document.addEventListener('DOMContentLoaded', () => {
+  updateBackground('default'); 
+});
 
 searchButton.on('click', handleSearchCity);
 
@@ -179,6 +185,10 @@ if (!currentWeather){
 
   contentCard.append(largeFontTemp, largeFontStatus)
   additionalContent.append(contentCard)
+
+  // Update the background image
+  const weatherDescription = currentWeather.weather[0].description;
+  updateBackground(weatherDescription);
 
 };
 
