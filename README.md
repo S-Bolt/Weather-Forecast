@@ -1,6 +1,6 @@
 # Weather Forecast Application
 
-![Weather App](./assets/images/projectss.png)
+![Weather App](./assets/images/ReadmeImage.png)
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@
 
 ## Project Overview
 
-This Weather Forecast Application provides users with real-time weather data for their selected city. Users can view the current weather, a 5-day forecast, and save frequently searched cities for easy access. The application is designed to be user-friendly, with a visually appealing banner, responsive layout, and reliable weather data sourced from OpenWeatherMap.
+This Weather Forecast Application provides users with real-time weather data for their selected city. Users can view the current weather, a 5-day forecast, and save frequently searched cities for easy access. The application is designed to be user-friendly, visually appealing and provide reliable weather data sourced from OpenWeatherMap.
 
 ## Features
 
@@ -27,7 +27,7 @@ Responsive Design: Works across different devices, ensuring a seamless experienc
 
 Real-Time Data: Displays temperature, humidity, wind speed, and general weather conditions.
 
-Visually Appealing Banner: A custom banner enhances the user experience.
+
 
 ## Installation
 
@@ -46,13 +46,11 @@ cd Weather-Forecast
 
 Search for a City: Type a city name into the search bar and click "Search" to view the current weather and forecast.
 
-Save a City: Click the "Save" button after searching for a city to add it to the saved searches sidebar.
-
 View Saved Searches: Click any saved city button to quickly view its weather data.
 
 ## Technologies Used
 
-Frontend: HTML, CSS, JavaScript, Bootstrap, jQuery
+Frontend: HTML, CSS, JavaScript, Bootstrap, jQuery , Chart.js
 
 API: OpenWeatherMap API for real-time weather data
 
