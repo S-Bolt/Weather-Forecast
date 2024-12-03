@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateBackground('default'); 
 });
 
-searchButton.on('click', handleSearchCity);
+searchForm.on('submit', handleSearchCity);
 
 // Load saved cities on page load
 loadSavedCities();
@@ -23,7 +23,7 @@ loadSavedCities();
 //handle search city submission event 
 function handleSearchCity(event){
     event.preventDefault();
-
+console.log("cityInput:", cityInput.val())
     let cityName = cityInput.val().trim()
     console.log(cityName);
 

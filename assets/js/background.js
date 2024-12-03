@@ -78,11 +78,18 @@ function setTextColor(color){
     })  
 }
 
+let isSnowing = false;
+
 function startSnowfall() {
     const container = document.getElementById('snowfall-container');
     if (container) {
+        stopSnowfall();
+        isSnowing = true; 
         for (let i = 0; i < 35; i++) {
             setTimeout(()=> {
+                //if stopSnowfall is called isSnowing flag is changed and it will stop creating new snowflakes
+            if (!isSnowing) return;
+
             const snowflake = document.createElement('div');
             snowflake.className = 'snowflake';
             snowflake.textContent = '\u2746'; 
@@ -96,8 +103,13 @@ function startSnowfall() {
 }
 
 function stopSnowfall() {
+    isSnowing = false;
+
     const container = document.getElementById('snowfall-container');
-    container.innerHTML = '';
+    if(container){
+        container.innerHTML = '';
+    }
+    
 
 }
 
